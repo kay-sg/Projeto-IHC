@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventário</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <nav class="searchArea">
+            <div class="searchContainer">
+
+                <div class="logo">
+                    <img
+                        src="InventarioImage.png"
+                        width="35"
+                        height="35"
+                        alt="Logo"
+                    >
+
+                    <span class="title">
+                        Inventário
+                    </span>
+                </div>
+
+                <input
+                    type="text"
+                    id="searchBar"
+                    class="searchBar"
+                    placeholder="Buscar equipamento..."
+                >
+
+            </div>
+        </nav>
+
+        <nav class="menuOptions">
+            <div class="menuOptionsContainer">
+
+                <button
+                    class="menuOption buttonPressed"
+                    data-filter="Todos"
+                >
+                    Todos
+                </button>
+
+                <button
+                    class="menuOption"
+                    data-filter="Espadas"
+                >
+                    Espadas
+                </button>
+
+                <button
+                    class="menuOption"
+                    data-filter="Armaduras"
+                >
+                    Armaduras
+                </button>
+
+            </div>
+        </nav>
+
+        <div class="generalItemsArea">
+
+            <span id="itemsCount" style="color: #ffffff4d;">
+                Itens armazenados: (0/12)
+            </span>
+
+            <div class="generalItemInfo">
+
+                <div
+                    class="itemsAreaContainer"
+                    id="itemsAreaContainer"
+                ></div>
+
+                <div id="itemAttributes"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
+
