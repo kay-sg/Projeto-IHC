@@ -1,0 +1,10 @@
+CREATE TABLE itens (
+  id int NOT NULL AUTO_INCREMENT,
+  nome varchar(100) NOT NULL,
+  imagem varchar(255) DEFAULT NULL,
+  qualidade int NOT NULL,
+  tipo varchar(50) NOT NULL,
+  metodo_utilizado int NOT NULL,
+  peso decimal(10,2) NOT NULL,
+  PRIMARY KEY (`id`)
+) 
