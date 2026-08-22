@@ -1,0 +1,8 @@
+{
+    "java.project.sourcePaths": [
+        "model"
+    ],
+    "java.project.referencedLibraries": [
+        "java-lib/**/*.jar"
+    ]
+}
