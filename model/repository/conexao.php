@@ -2,8 +2,8 @@
 
 $conexao = mysqli_connect(
     "localhost",
-    "xxx",
-    "xxx",
+    "root",
+    "branquinha",
     "inventario"
 );
 

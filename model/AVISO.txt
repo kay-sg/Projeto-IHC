@@ -1,0 +1,3 @@
+Ainda faltam as classes TemplateEquipmento, Manual, Aautomatico e Minijogo
+
+Acredito que com elas poderemos implementar algum(ns) padrão(ões) de projeto.
