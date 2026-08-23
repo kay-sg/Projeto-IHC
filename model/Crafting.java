@@ -1,5 +1,3 @@
-package model;
-
 public abstract class Crafting {
 
     private int idCrafting;
