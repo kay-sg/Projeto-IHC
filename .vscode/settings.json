@@ -1,8 +1,8 @@
 {
     "java.project.sourcePaths": [
-        "model"
+        "model", //"controler"
     ],
     "java.project.referencedLibraries": [
-        "java-lib/**/*.jar"
+        "lib/**/*.jar"
     ]
 }
