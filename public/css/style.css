@@ -1,0 +1,198 @@
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+    :root {
+        --bg-primary: #121212;
+        --bg-secondary: #1e1e1e;
+        --text-primary: #ffffff;
+        --text-muted: #b3b3b3;
+        --accent: #e53935;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        font-family: "Inter", sans-serif;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        background-color: #151D30;
+        padding: 18px;
+        border-radius: 5px;
+        width: 771px;
+        min-height: 600px;
+    }
+
+    .searchContainer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 25px;
+    }
+
+    .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .searchBar {
+        width: 350px;
+        padding: 8px;
+        margin-right: 150px;
+        border: 1px solid white;
+        border-radius: 4px;
+        background-color: transparent;
+        outline: none;
+        color: white;
+    }
+
+    .searchBar::placeholder {
+        color: #8890A4;
+    }
+
+    .title {
+        font-family: "Press Start 2P", system-ui;
+        font-size: large;
+    }
+
+    .menuOptionsContainer {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        border: 1px solid #6B4423;
+    }
+
+    .menuOption {
+        border: 1px solid #6B4423;
+        background-color: transparent;
+        color: #8890A4;
+        padding: 6px 10px;
+        outline: none;
+        cursor: pointer;
+    }
+
+    .menuOption.buttonPressed {
+        border-bottom: 3px solid #F0D28A;
+        color: #F0D28A;
+    }
+
+    .generalItemsArea {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    .generalItemInfo {
+        display: flex;
+        gap: 20px;
+    }
+
+    .itemsAreaContainer {
+        display: grid;
+        grid-template-columns: repeat(4, 90px);
+        grid-template-rows: repeat(3, 90px);
+        column-gap: 10px;
+        row-gap: 10px;
+        width: 390px;
+    }
+
+    .itemArea {
+        border: 1px solid white;
+        width: 90px;
+        height: 90px;
+        border-radius: 4px;
+        background-color: transparent;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 5px;
+    }
+
+    .itemAttributes {
+        width: 280px;
+        min-width: 0;
+        background-color: transparent;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .itemImage {
+        width: 70px;
+        height: 70px;
+        object-fit: contain;
+        align-self: center;
+    }
+
+    .itemArea img {
+        width: 60px;
+        height: 60px;
+        object-fit: contain;
+    }
+
+    .itemInfo {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .attributeGroup {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 10px;
+    }
+
+    .label {
+        color: #8890A4;
+        font-size: 10px;
+    }
+
+    .value {
+        color: #F0D28A;
+        font-size: 14px;
+    }
+
+    .discardButton {
+        padding: 10px;
+        border: 1px solid #8b1a1a;
+        background-color: transparent;
+        color: #ff6b6b;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: 0.2s;
+    }
+
+    .discardButton:hover {
+        background-color: #8b1a1a;
+        color: white;
+    }
+
+    .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+}
