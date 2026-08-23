@@ -13,7 +13,7 @@ function carregarItens() {
         })
         .then(data => {
             items = data;
-            selectedItem = items[0] || null;
+            selectedItem = null;
             atualizarItens();
         })
         .catch(error => {
@@ -22,14 +22,19 @@ function carregarItens() {
 }
 
 function descartarItem(id) {
+    if (!id) {
+        return;
+    }
+
     fetch(`http://localhost:8000/excluirItem.php?id=${id}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error("Erro ao excluir o item.");
             }
-            return response;
+            return response.json();
         })
         .then(() => {
+            selectedItem = null;
             carregarItens();
         })
         .catch(error => {
@@ -58,28 +63,66 @@ function atualizarItens() {
     count.textContent = `Itens armazenados: (${itemsFiltrados.length}/12)`;
     container.innerHTML = "";
 
-    if (!selectedItem || !itemsFiltrados.some(item => item.id === selectedItem.id)) {
-        selectedItem = itemsFiltrados[0] || null;
+    if (
+        selectedItem &&
+        !itemsFiltrados.some(item => item.id === selectedItem.id)
+    ) {
+        selectedItem = null;
     }
 
     for (let index = 0; index < 12; index++) {
         const item = itemsFiltrados[index];
-        const button = document.createElement("button");
-        button.className = "itemArea";
 
-        if (item) {
-            button.dataset.id = item.id;
+        if (!item) {
+            const emptyArea = document.createElement("div");
 
-            const img = document.createElement("img");
-            img.src = item.imagem;
-            img.alt = item.nome;
-            button.appendChild(img);
+            emptyArea.className = "itemArea";
 
-            button.addEventListener("click", () => {
-                selectedItem = item;
+            emptyArea.addEventListener("click", () => {
+                selectedItem = null;
+
+                document.querySelectorAll(".itemArea").forEach(btn => {
+                    btn.classList.remove("selected");
+                });
+
                 mostrarAtributos();
             });
+
+            container.appendChild(emptyArea);
+            continue;
         }
+
+        const button = document.createElement("button");
+
+        button.type = "button";
+        button.className = "itemArea";
+        button.dataset.id = item.id;
+
+        const img = document.createElement("img");
+
+        img.src = item.imagem;
+        img.alt = item.nome;
+
+        button.appendChild(img);
+
+        if (selectedItem && selectedItem.id === item.id) {
+            button.classList.add("selected");
+        }
+
+        button.addEventListener("click", event => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            selectedItem = item;
+
+            document.querySelectorAll(".itemArea").forEach(btn => {
+                btn.classList.remove("selected");
+            });
+
+            button.classList.add("selected");
+
+            mostrarAtributos();
+        });
 
         container.appendChild(button);
     }
@@ -89,18 +132,24 @@ function atualizarItens() {
 
 function mostrarAtributos() {
     const attributes = document.getElementById("itemAttributes");
+
     attributes.innerHTML = "";
 
-    if (!selectedItem) return;
+    if (!selectedItem) {
+        return;
+    }
 
     const item = selectedItem;
+
     const div = document.createElement("div");
+
     div.className = "itemAttributes";
 
     div.innerHTML = `
         <img src="${item.imagem}" class="itemImage" alt="${item.nome}">
 
         <div class="itemInfo">
+
             <div class="attributeGroup">
                 <span class="label">nome do equipamento</span>
                 <span class="value">${item.nome}</span>
@@ -123,13 +172,20 @@ function mostrarAtributos() {
                 <span class="value">${item.qualidade}</span>
                 <span class="value">${item.peso} kg</span>
             </div>
+
         </div>
 
-        <button class="discardButton">Descartar</button>
+        <button type="button" class="discardButton">
+            Descartar
+        </button>
     `;
 
     const deleteButton = div.querySelector(".discardButton");
-    deleteButton.addEventListener("click", () => {
+
+    deleteButton.addEventListener("click", event => {
+        event.preventDefault();
+        event.stopPropagation();
+
         descartarItem(item.id);
     });
 
@@ -139,7 +195,11 @@ function mostrarAtributos() {
 const menuButtons = document.querySelectorAll(".menuOption");
 
 menuButtons.forEach(button => {
-    button.addEventListener("click", () => {
+    button.type = "button";
+
+    button.addEventListener("click", event => {
+        event.preventDefault();
+
         filtro = button.dataset.filter;
 
         menuButtons.forEach(btn => {
@@ -147,6 +207,7 @@ menuButtons.forEach(button => {
         });
 
         button.classList.add("buttonPressed");
+
         atualizarItens();
     });
 });
