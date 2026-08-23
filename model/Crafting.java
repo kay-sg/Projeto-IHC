@@ -1,13 +1,13 @@
 public abstract class Crafting {
 
-    private int idCrafting;
+    protected int idCrafting;
     protected Equipamento equipamento;
 
     public Crafting(int idCrafting) {
         this.idCrafting = idCrafting;
     }
 
-    public abstract String executarCraft();
+    public abstract Equipamento executarCraft();
 
     public int obterIdCrafting() {
         return this.idCrafting;
