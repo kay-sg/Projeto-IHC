@@ -1,3 +1,16 @@
-Ainda faltam as classes TemplateEquipmento, Manual, Aautomatico e Minijogo
+Ainda faltam as classes TemplateEquipmento, Manual, Automático e Minijogo
 
 Acredito que com elas poderemos implementar algum(ns) padrão(ões) de projeto.
+
+Criação da tabela itens no banco 
+
+CREATE TABLE itens (
+  id int NOT NULL AUTO_INCREMENT,
+  nome varchar(100) NOT NULL,
+  imagem varchar(255) DEFAULT NULL,
+  qualidade int NOT NULL,
+  tipo varchar(50) NOT NULL,
+  metodo_utilizado int NOT NULL,
+  peso decimal(10,2) NOT NULL,
+  PRIMARY KEY (`id`)
+) 
