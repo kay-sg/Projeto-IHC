@@ -3,6 +3,6 @@
         "model", "controller"
     ],
     "java.project.referencedLibraries": [
-        "lib/**/*.jar"
+        "java-lib/**/*.jar"
     ]
 }

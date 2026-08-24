@@ -1,9 +1,7 @@
 package repository;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+
 
 public class ConexaoJava {
 
@@ -23,7 +21,7 @@ public class ConexaoJava {
             return con;
         } catch (Exception e) {
             // TODO: handle exception
-            System.out.println(e);
+            e.printStackTrace();
             return null;
         }
     }
