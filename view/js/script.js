@@ -4,7 +4,7 @@ let busca = "";
 let selectedItem = null;
 
 function carregarItens() {
-    fetch("http://localhost:8000/model/repository/itens.php")
+    fetch("model/repository/itens.php")
         .then(response => {
             if (!response.ok) {
                 throw new Error("Erro ao buscar os itens.");
@@ -26,7 +26,7 @@ function descartarItem(id) {
         return;
     }
 
-    fetch(`http://localhost:8000/model/repository/excluirItem.php?id=${id}`)
+    fetch(`model/repository/excluirItem.php?id=${id}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error("Erro ao excluir o item.");

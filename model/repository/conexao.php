@@ -5,34 +5,38 @@
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../..");
 $dotenv->load();
 */
-function carregarEnv($caminhoArquivo) {
-    if (!file_exists($caminhoArquivo)) {
-        return;
-    }
 
-    $linhas = file($caminhoArquivo, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-    foreach ($linhas as $linha) {
-        // Ignora comentários
-        if (str_starts_with(trim($linha), '#')) {
-            continue;
-        }
+if (!function_exists('carregarEnv')) {
+     function carregarEnv($caminhoArquivo) {
+     if (!file_exists($caminhoArquivo)) {
+         return;
+     }
 
-        // Divide a linha em chave e valor
-        list($chave, $valor) = explode('=', $linha, 2);
-        $chave = trim($chave);
-        $valor = trim($valor);
+     $linhas = file($caminhoArquivo, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+      foreach ($linhas as $linha) {
+            // Ignora comentários
+            if (str_starts_with(trim($linha), '#')) {
+                continue;
+            }
 
-        // Remove aspas caso o valor esteja entre aspas
-        $valor = trim($valor, '"\'');
+         // Divide a linha em chave e valor
+         list($chave, $valor) = explode('=', $linha, 2);
+         $chave = trim($chave);
+         $valor = trim($valor);
 
-        // Define nas superglobais
-        if (!array_key_exists($chave, $_SERVER) && !array_key_exists($chave, $_ENV)) {
-            putenv("$chave=$valor");
-            $_ENV[$chave] = $valor;
-            $_SERVER[$chave] = $valor;
-        }
+         // Remove aspas caso o valor esteja entre aspas
+            $valor = trim($valor, '"\'');
+
+         // Define nas superglobais
+         if (!array_key_exists($chave, $_SERVER) && !array_key_exists($chave, $_ENV)) {
+             putenv("$chave=$valor");
+             $_ENV[$chave] = $valor;
+             $_SERVER[$chave] = $valor;
+            }
+     }
     }
 }
+
 
 // Chamando a função apontando para o seu arquivo .env
 carregarEnv(__DIR__ . '/../../.env');
