@@ -5,6 +5,7 @@ public class CraftingController {
     public static void main(String[] args) {
         ConexaoJava conection = new ConexaoJava();
         Connection con;
+        boolean ativo = true;
 
         try {
             con = conection.conectar();
@@ -17,7 +18,18 @@ public class CraftingController {
             con.close();
         } catch (Exception e) {
             // TODO: handle exception
-            System.out.println(e);
+            e.printStackTrace();
         }
+
+        try{
+            while(ativo){
+                ativo=false;
+            }
+        }
+        catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+
     }
 }
