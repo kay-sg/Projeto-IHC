@@ -14,3 +14,16 @@ CREATE TABLE itens (
   peso decimal(10,2) NOT NULL,
   PRIMARY KEY (`id`)
 ) 
+____
+tabela de teste para o java
+create database teste;
+use teste;
+
+CREATE TABLE JavaInstructions (
+  id int NOT NULL AUTO_INCREMENT,
+  instructionType varchar(100) NOT NULL,
+  instruction varchar(255) DEFAULT NULL,
+  processado boolean,
+ 
+  PRIMARY KEY (`id`)
+);
