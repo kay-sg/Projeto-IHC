@@ -7,6 +7,14 @@ public class Atributo {
         this.valor = v;
     }
 
+    public String getNome() {
+        return this.nome;
+    }
+
+    public float getValor() {
+        return this.valor;
+    }
+
     @Override
     public String toString(){
         return "\n"+this.nome+": "+this.valor;

@@ -5,10 +5,10 @@ import java.sql.DriverManager;
 
 public class ConexaoJava {
 
-    private static final String HOST = System.getenv("DB_HOST");
-    private static final String BANCO = System.getenv("DB_NAME");
-    private static final String USUARIO = System.getenv("DB_USER");
-    private static final String SENHA = System.getenv("DB_PASSWORD");
+    private static final String HOST = System.getenv("JAVADB_HOST");
+    private static final String BANCO = System.getenv("JAVADB_NAME");
+    private static final String USUARIO = System.getenv("JAVADB_USER");
+    private static final String SENHA = System.getenv("JAVADB_PASSWORD");
     private static final String URL = "jdbc:mysql://" + HOST + "/" + BANCO + "?useSSL=false&serverTimezone=UTC";
 
     private Connection con;
