@@ -1,3 +1,5 @@
+import java.util.List;
+
 public abstract class Crafting {
 
     protected int idCrafting;
@@ -7,7 +9,12 @@ public abstract class Crafting {
         this.idCrafting = idCrafting;
     }
 
-    public abstract Equipamento executarCraft();
+    public final Equipamento executarCraft(TemplateEquipamento template, List<Material> materiais) {
+        this.equipamento = calcularAtributos(template, materiais);
+        return this.equipamento;
+    }
+
+    protected abstract Equipamento calcularAtributos(TemplateEquipamento template, List<Material> materiais);
 
     public int obterIdCrafting() {
         return this.idCrafting;
