@@ -1,15 +1,8 @@
 package controller;
 
 import java.util.List;
+import model.*;
 
-import model.Automatico;
-import model.Crafting;
-import model.Equipamento;
-import model.JavaInstruction;
-import model.Manual;
-import model.Material;
-import model.Minijogo;
-import model.TemplateEquipamento;
 
 import model.repository.ConexaoJava;
 import model.repository.ConexaoRepository;
