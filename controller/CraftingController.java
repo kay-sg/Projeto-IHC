@@ -1,4 +1,6 @@
 import repository.ConexaoJava;
+import repository.ConexaoRepository;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -6,7 +8,7 @@ import java.sql.ResultSet;
 public class CraftingController {
 
     public static void main(String[] args) {
-        ConexaoJava conection = new ConexaoJava();
+        ConexaoRepository conection = ConexaoJava.obterInstancia();
         Connection con;
         boolean ativo = true;
 

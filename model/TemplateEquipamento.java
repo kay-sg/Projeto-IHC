@@ -11,4 +11,12 @@ public class TemplateEquipamento {
         this.tipo = tp;
         this.atributos = at;
     }
+
+     public int getIdEquipamento() {
+        return this.idEquipamento;
+    }
+
+    public int getTipo() {
+        return this.tipo;
+    }
 }

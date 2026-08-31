@@ -18,6 +18,7 @@ public class Inventario {
     public void adicionarEquipamento(Equipamento e) {
         if (verificarCapacidade()) {
             this.equipamentos.add(e);
+            this.quantidadeAtual++;
         }
     }
 
@@ -28,7 +29,7 @@ public class Inventario {
     }
 
     public List<Equipamento> listarEquipamentos() {
-        return this.equipamentos;
+        return new ArrayList<>(this.equipamentos);
     }
 
     public boolean verificarCapacidade() {
