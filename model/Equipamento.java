@@ -7,6 +7,7 @@ public class Equipamento {
     private boolean metodoCrafting;
     private String tipo;
     private ArrayList<Atributo> atributos = new ArrayList<>();
+    private ArrayList<Material> materiaisUsados = new ArrayList<>();
 
     public Equipamento(int id, String n, float qd, boolean mc, String tp){
         this.idEquipamento = id;
@@ -14,6 +15,10 @@ public class Equipamento {
         this.qualidade = qd;
         this.metodoCrafting = mc;
         this.tipo = tp;
+    }
+
+    public void setMateriais(ArrayList<Material> m) {
+        this.materiaisUsados = m;
     }
 
     public void atribuicao(Atributo at){
@@ -38,6 +43,10 @@ public class Equipamento {
 
     public boolean isMetodoCrafting() {
         return this.metodoCrafting;
+    }
+
+    public ArrayList<Material> getMateriais() {
+        return this.materiaisUsados;
     }
 
     public String getTipo() {

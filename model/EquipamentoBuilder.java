@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class EquipamentoBuilder {
     private int idEquipamento;
@@ -7,6 +8,7 @@ public class EquipamentoBuilder {
     private boolean metodoCrafting;
     private String tipo;
     private ArrayList<Atributo> atributos = new ArrayList<>();
+    private ArrayList<Material> materiaisUsados;
 
     public EquipamentoBuilder id(int id) {
         this.idEquipamento = id;
@@ -38,6 +40,11 @@ public class EquipamentoBuilder {
         return this;
     }
 
+    public EquipamentoBuilder listaMateriais(List<Material> materiais){
+        this.materiaisUsados = new ArrayList<>(materiais);
+        return this; 
+    }
+
     public Equipamento build() {
         Equipamento equipamento = new Equipamento(
             this.idEquipamento, 
@@ -50,6 +57,8 @@ public class EquipamentoBuilder {
         for (Atributo at : this.atributos) {
             equipamento.atribuicao(at);
         }
+
+        equipamento.setMateriais(materiaisUsados);
 
         return equipamento;
     }

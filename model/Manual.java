@@ -15,27 +15,24 @@ public class Manual extends Crafting {
 
         EquipamentoBuilder builder = new EquipamentoBuilder()
             .tipo(String.valueOf(template.getTipo()))
-            .metodoCrafting(true);
+            .metodoCrafting(true).nome(String.valueOf(template.getNome()));
 
         adicionarAtributosPadrao(builder, materiais, desempenho);
-        adicionarAtributosDosMateriais(builder, materiais, desempenho);
+        adicionarMateriaisUtilizados(builder, materiais);
 
         return builder.build();
     }
 
     private void adicionarAtributosPadrao(EquipamentoBuilder builder, List<Material> materiais, float fator) {
         float somaValorMagico = 0f;
+        float qualidade = 10f;
         for (Material m : materiais) {
             somaValorMagico += m.obterValorMagico();
         }
 
         builder.comAtributo(new Atributo("Durabilidade", (50f + somaValorMagico * 2) * fator));
         builder.comAtributo(new Atributo("Ataque", (5f + somaValorMagico) * fator));
+        builder.qualidade(qualidade*somaValorMagico*fator);
     }
 
-    private void adicionarAtributosDosMateriais(EquipamentoBuilder builder, List<Material> materiais, float fator) {
-        for (Material m : materiais) {
-            builder.comAtributo(new Atributo(m.obterNome(), m.obterValorMagico() * fator));
-        }
-    }
 }
