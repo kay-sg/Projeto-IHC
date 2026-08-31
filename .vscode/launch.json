@@ -6,7 +6,13 @@
             "name": "Java Debug",
             "request": "launch",
             "mainClass": "CraftingController",
-            "envFile": "${workspaceFolder}/.env"
+            "envFile": "${workspaceFolder}/.env",
+            "env": {
+                "JAVADB_HOST": "localhost",
+                "JAVADB_NAME": "equipmentcrafting",
+                "JAVADB_USER": "root",
+                "JAVADB_PASSWORD": "branquinha"
+            }
         }
     ]
 }
