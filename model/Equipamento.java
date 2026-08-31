@@ -20,6 +20,30 @@ public class Equipamento {
         atributos.add(at);
     }
 
+    public ArrayList<Atributo> getAtributos(){
+        return this.atributos;
+    }
+    
+    public int getIdEquipamento() {
+        return this.idEquipamento;
+    }
+
+    public String getNome() {
+        return this.nome;
+    }
+
+    public float getQualidade() {
+        return this.qualidade;
+    }
+
+    public boolean isMetodoCrafting() {
+        return this.metodoCrafting;
+    }
+
+    public String getTipo() {
+        return this.tipo;
+    }
+
     @Override
     public String toString(){
         String temp = "Id: "+this.idEquipamento+"\nNome: "+this.nome+"\nTipo: "+this.tipo+"\nQualidade:"+this.qualidade+"\nMétodo: ";

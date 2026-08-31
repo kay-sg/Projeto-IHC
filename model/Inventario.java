@@ -1,54 +1,56 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 
 public class Inventario {
 
-    private int idInventario;
-    private int quantidadeMax;
-    private int quantidadeAtual;
-    private List<Equipamento> equipamentos;
+    private Inventario() {}
 
-    public Inventario(int idInventario, int quantidadeMax) {
-        this.idInventario = idInventario;
-        this.quantidadeMax = quantidadeMax;
-        this.quantidadeAtual = 0;
-        this.equipamentos = new ArrayList<>();
-    }
+   public static void salvarEquipamento(Equipamento equipamento, Connection con, int idUsuario) {
+        String sql = "INSERT INTO Equipment (idUsuario, nome, qualidade, metodoUtilizado, tipo) VALUES ( ?, ?, ?, ?, ?)";
 
-    public void adicionarEquipamento(Equipamento e) {
-        if (verificarCapacidade()) {
-            this.equipamentos.add(e);
-            this.quantidadeAtual++;
+        try{
+            PreparedStatement stmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            stmt.setInt(1,idUsuario);
+            stmt.setString(2, equipamento.getNome());
+            stmt.setFloat(3, equipamento.getQualidade());
+            stmt.setBoolean(4, equipamento.isMetodoCrafting());
+            stmt.setString(5, equipamento.getTipo());
+
+            stmt.executeUpdate();
+            
+            // Captura o ID gerado pelo auto_increment
+            try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    int idGerado = generatedKeys.getInt(1);
+                    
+                    // Salva os atributos usando o ID recém-capturado do banco
+                    salvarAtributos(con, equipamento, idGerado);
+                } else {
+                    throw new SQLException("Falha ao criar equipamento, nenhum ID obtido.");
+                }
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao salvar equipamento no banco de dados: " + e.getMessage());
         }
     }
 
-    public void removerEquipamento(Equipamento e) {
-        if (equipamentos.remove(e)) {
-            this.quantidadeAtual--;
+   private static void salvarAtributos(Connection conn, Equipamento equipamento, int idEquipment) throws SQLException {
+        // Ajustado para o nome correto da coluna no banco: idEquipment
+        String sqlAtributo = "INSERT INTO Attribute (idEquipment, nome, valor) VALUES (?, ?, ?)";
+        
+        
+        PreparedStatement stmt = conn.prepareStatement(sqlAtributo);
+        for (Atributo at : equipamento.getAtributos()) {
+            stmt.setInt(1, idEquipment); // Utiliza o ID obtido do banco
+            stmt.setString(2, at.getNome()); 
+            stmt.setFloat(3, at.getValor());
+            stmt.addBatch();
         }
-    }
-
-    public List<Equipamento> listarEquipamentos() {
-        return new ArrayList<>(this.equipamentos);
-    }
-
-    public boolean verificarCapacidade() {
-        if (this.quantidadeAtual < this.quantidadeMax) {
-            return true;
-        }
-
-        return false;
-    }
-
-    public int getIdInventario() {
-        return this.idInventario;
-    }
-
-    public int getQuantidadeMax() {
-        return this.quantidadeMax;
-    }
-
-    public int getQuantidadeAtual() {
-        return this.quantidadeAtual;
+        stmt.executeBatch();
     }
 }

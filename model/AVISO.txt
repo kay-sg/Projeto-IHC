@@ -160,3 +160,21 @@ INSERT INTO TemplateUsedMaterial (idMaterial, idTemplate) VALUES
 (1, 1), -- Ferro no Template 1
 (2, 1); -- Madeira no Template 1
 
+INSERT INTO Inventory (idUsuarioInv, quantidadeMax) VALUES 
+(1,20);
+
+#pegar os materias relacionados a um template 
+SELECT 
+    m.idMaterial,
+    m.nome AS nome_material,
+    m.durabilidade,
+    m.peso,
+    m.valorMagico
+FROM Template t
+INNER JOIN TemplateUsedMaterial tum ON t.idTemplate = tum.idTemplate
+INNER JOIN Material m ON tum.idMaterial = m.idMaterial
+WHERE t.idTemplate = 1;
+
+
+insert into JavaInstructions(idUsuario, idTemplate, tipo, processado) values 
+(1,1,'END',false);
