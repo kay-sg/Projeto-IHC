@@ -22,4 +22,13 @@ public class TemplateEquipamento {
     public boolean getUsado(){
         return this.usado;
     }
+
+    public ArrayList<Material> getMateriais() {
+        return this.materiais;
+    }
+
+    public void setMateriais(ArrayList<Material> m) {
+        this.materiais = m;
+    }
+    
 }

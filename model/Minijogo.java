@@ -4,7 +4,7 @@ public class Minijogo {
     private String nome, descricao;
     private float  pontuacao;
 
-    public Minijogo(int id, String n, String d, float rc, float pt){
+    public Minijogo(int id, String n, String d, float pt){
         this.idMinijogo = id;
         this.nome = n;
         this.descricao = d;
