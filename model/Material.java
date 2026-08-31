@@ -1,3 +1,5 @@
+package model;
+
 public class Material {
 
     private int idMaterial;

@@ -3,6 +3,19 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CraftingController",
+            "request": "launch",
+            "mainClass": "controller.CraftingController",
+            "projectName": "Projeto Geral 4 Periodo_e007f62e",
+            "env": {
+                "JAVADB_HOST": "localhost",
+                "JAVADB_NAME": "xxx",
+                "JAVADB_USER": "xxx",
+                "JAVADB_PASSWORD": "xxx"
+            }
+        },
+        {
+            "type": "java",
             "name": "Java Debug",
             "request": "launch",
             "mainClass": "CraftingController",
