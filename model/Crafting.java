@@ -18,6 +18,10 @@ public abstract class Crafting {
 
     protected abstract Equipamento calcularAtributos(TemplateEquipamento template, List<Material> materiais);
 
+    protected void adicionarMateriaisUtilizados(EquipamentoBuilder builder, List<Material> materiais) {
+        builder.listaMateriais(materiais);
+    }
+
     public int obterIdCrafting() {
         return this.idCrafting;
     }

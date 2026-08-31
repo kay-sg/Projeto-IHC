@@ -88,7 +88,7 @@ create table Equipment(
     nome varchar(45),
     qualidade float,
     metodoUtilizado boolean,
-    peso float,
+    tipo varchar(45),
     primary key(idEquipment),
     foreign key (idUsuario) references Inventory(idUsuarioInv) on delete set null on update cascade
 );
@@ -166,7 +166,7 @@ INSERT INTO Inventory (idUsuarioInv, quantidadeMax) VALUES
 #pegar os materias relacionados a um template 
 SELECT 
     m.idMaterial,
-    m.nome AS nome_material,
+    m.nome,
     m.durabilidade,
     m.peso,
     m.valorMagico
@@ -178,3 +178,14 @@ WHERE t.idTemplate = 1;
 
 insert into JavaInstructions(idUsuario, idTemplate, tipo, processado) values 
 (1,1,'END',false);
+
+insert into JavaInstructions(idUsuario, idTemplate, tipo, instruction, processado) values 
+(1,1,'CREATE','AUTOMATICO',false);
+
+select * from JavaInstructions;
+
+select * from Equipment;
+
+select * from Attribute;
+
+drop database equipmentcrafting;

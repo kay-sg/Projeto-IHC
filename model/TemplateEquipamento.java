@@ -1,11 +1,8 @@
-package model;
-
-import java.util.ArrayList;
 public class TemplateEquipamento {
 
     private int idEquipamento, tipo;
+    private String nome;
     private boolean usado;
-    private ArrayList<Material> materiais = new ArrayList<>();
 
     public TemplateEquipamento(int id, int tp, boolean us){
         this.idEquipamento = id;
@@ -25,12 +22,9 @@ public class TemplateEquipamento {
         return this.usado;
     }
 
-    public ArrayList<Material> getMateriais() {
-        return this.materiais;
+    public String getNome(){
+        return this.nome;
     }
 
-    public void setMateriais(ArrayList<Material> m) {
-        this.materiais = m;
-    }
     
 }

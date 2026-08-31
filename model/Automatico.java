@@ -15,24 +15,21 @@ public class Automatico extends Crafting {
             .metodoCrafting(false);
 
         adicionarAtributosPadrao(builder, materiais);
-        adicionarAtributosDosMateriais(builder, materiais);
+        adicionarMateriaisUtilizados(builder, materiais);
 
         return builder.build();
     }
 
     private void adicionarAtributosPadrao(EquipamentoBuilder builder, List<Material> materiais) {
         float somaValorMagico = 0f;
+        float qualidade = 10f;
         for (Material m : materiais) {
             somaValorMagico += m.obterValorMagico();
         }
 
         builder.comAtributo(new Atributo("Durabilidade", 50f + somaValorMagico * 2));
         builder.comAtributo(new Atributo("Ataque", 5f + somaValorMagico));
+        builder.qualidade(qualidade*somaValorMagico);
     }
 
-    private void adicionarAtributosDosMateriais(EquipamentoBuilder builder, List<Material> materiais) {
-        for (Material m : materiais) {
-            builder.comAtributo(new Atributo(m.obterNome(), m.obterValorMagico() * (float) Math.random()));
-        }
-    }
 }
