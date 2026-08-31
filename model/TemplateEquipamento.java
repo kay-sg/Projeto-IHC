@@ -1,3 +1,4 @@
+package model;
 public class TemplateEquipamento {
 
     private int idEquipamento, tipo;
