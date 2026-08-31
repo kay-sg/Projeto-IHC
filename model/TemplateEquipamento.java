@@ -3,13 +3,12 @@ public class TemplateEquipamento {
 
     private int idEquipamento, tipo;
     private boolean usado;
-    private ArrayList<Atributo> atributos;
     private ArrayList<Material> materiais = new ArrayList<>();
 
-    public TemplateEquipamento(int id, int tp, ArrayList<Atributo> at){
+    public TemplateEquipamento(int id, int tp, boolean us){
         this.idEquipamento = id;
         this.tipo = tp;
-        this.atributos = at;
+        this.usado = us;
     }
 
      public int getIdEquipamento() {
@@ -18,5 +17,9 @@ public class TemplateEquipamento {
 
     public int getTipo() {
         return this.tipo;
+    }
+
+    public boolean getUsado(){
+        return this.usado;
     }
 }
