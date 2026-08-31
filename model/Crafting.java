@@ -24,7 +24,4 @@ public abstract class Crafting {
         return this.equipamento;
     }
 
-    public void definirEquipamento(Equipamento equipamento) {
-        this.equipamento = equipamento;
-    }
 }

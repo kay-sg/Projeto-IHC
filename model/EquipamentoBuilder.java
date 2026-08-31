@@ -18,12 +18,12 @@ public class EquipamentoBuilder {
         return this;
     }
 
-    public EquipamentoBuilder id(String tipo) {
+    public EquipamentoBuilder tipo(String tipo) {
         this.tipo = tipo;
         return this;
     }
 
-    public EquipamentoBuilder id(float qualidade) {
+    public EquipamentoBuilder qualidade(float qualidade) {
         this.qualidade = qualidade;
         return this;
     }
@@ -33,11 +33,16 @@ public class EquipamentoBuilder {
         return this;
     }
 
+    public EquipamentoBuilder comAtributo(Atributo atributo) {
+        this.atributos.add(atributo);
+        return this;
+    }
+
     public Equipamento build() {
         Equipamento equipamento = new Equipamento(
             this.idEquipamento, 
             this.nome, 
-            this.idEquipamento, 
+            this.qualidade, 
             this.metodoCrafting, 
             this.tipo
         );
