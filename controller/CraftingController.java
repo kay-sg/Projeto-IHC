@@ -10,6 +10,7 @@ import model.repository.JavaInstructionsRepository;
 import model.repository.MaterialRepository;
 import model.repository.TemplateRepository;
 import model.repository.MinijogoRepository;
+import model.repository.InventarioRepository;
 
 public class CraftingController {
 
@@ -26,12 +27,16 @@ public class CraftingController {
 
     private final MinijogoRepository
             minijogoRepository;
+    
+    private final InventarioRepository
+        inventarioRepository;
 
     public CraftingController(
             JavaInstructionsRepository instructionRepository,
             MaterialRepository materialRepository,
             TemplateRepository templateRepository,
-            MinijogoRepository minijogoRepository) {
+            MinijogoRepository minijogoRepository,
+            InventarioRepository inventarioRepository) {
 
         this.instructionRepository =
                 instructionRepository;
@@ -44,6 +49,9 @@ public class CraftingController {
 
         this.minijogoRepository =
                 minijogoRepository;
+
+        this.inventarioRepository =
+                inventarioRepository;
     }
 
     public void executar() {
@@ -153,6 +161,11 @@ public class CraftingController {
                         materiais
                 );
 
+        if (equipamentoCriado != null) {
+            // Salva o equipamento gerado no banco de dados através do repositório
+            inventarioRepository.salvarEquipamento(equipamentoCriado, idUsuario);
+        }
+
         instructionRepository.marcarComoProcessada(
                 instrucao.getId()
         );
@@ -235,13 +248,19 @@ public class CraftingController {
                 new MinijogoRepository(
                         conexao
                 );
+        
+        InventarioRepository inventarioRepository=
+                new InventarioRepository(
+                    conexao
+                );
 
         CraftingController controller =
                 new CraftingController(
                         instructionRepository,
                         materialRepository,
                         templateRepository,
-                        minijogoRepository
+                        minijogoRepository,
+                        inventarioRepository
                 );
 
         controller.executar();
