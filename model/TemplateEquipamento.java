@@ -5,10 +5,11 @@ public class TemplateEquipamento {
     private String nome;
     private boolean usado;
 
-    public TemplateEquipamento(int id, int tp, boolean us){
+    public TemplateEquipamento(int id, int tp, boolean us, String n){
         this.idEquipamento = id;
         this.tipo = tp;
         this.usado = us;
+        this.nome = n;
     }
 
      public int getIdEquipamento() {

@@ -22,7 +22,8 @@ public class TemplateRepository {
         String sql =
                 "SELECT " +
                 "idTemplateType, " +
-                "automatizavel " +
+                "automatizavel," +
+                "nome " +
                 "FROM Template " +
                 "WHERE idTemplate = ?";
 
@@ -46,7 +47,8 @@ public class TemplateRepository {
                             ),
                             rs.getBoolean(
                                 "automatizavel"
-                            )
+                            ),
+                            rs.getString("nome")
                     );
                 }
             }

@@ -12,7 +12,7 @@ public class Automatico extends Crafting {
     protected Equipamento calcularAtributos(TemplateEquipamento template, List<Material> materiais) {
         EquipamentoBuilder builder = new EquipamentoBuilder()
             .tipo(String.valueOf(template.getTipo()))
-            .metodoCrafting(false);
+            .metodoCrafting(false).nome(String.valueOf(template.getNome()));
 
         adicionarAtributosPadrao(builder, materiais);
         adicionarMateriaisUtilizados(builder, materiais);
