@@ -160,9 +160,6 @@ public class CraftingController {
                         materiais
                 );
 
-        // Aqui você mantém seu salvamento:
-        // Inventario.salvarEquipamento(...)
-
         instructionRepository.marcarComoProcessada(
                 instrucao.getId()
         );
