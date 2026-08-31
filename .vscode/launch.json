@@ -6,20 +6,8 @@
             "name": "CraftingController",
             "request": "launch",
             "mainClass": "controller.CraftingController",
-            "projectName": "Projeto-IHC_59ee1678"
-        },
-        {
-            "type": "java",
-            "name": "Java Debug",
-            "request": "launch",
-            "mainClass": "CraftingController",
-            "envFile": "${workspaceFolder}/.env",
-            "env": {
-                "JAVADB_HOST": "localhost",
-                "JAVADB_NAME": "equipmentcrafting",
-                "JAVADB_USER": "root",
-                "JAVADB_PASSWORD": "branquinha"
-            }
+            "projectName": "Projeto-IHC_59ee1678",
+             "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
