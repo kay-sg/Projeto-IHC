@@ -27,3 +27,136 @@ CREATE TABLE JavaInstructions (
  
   PRIMARY KEY (`id`)
 );
+
+___________________________________
+código sql a ser utilizado no projeto:
+create database EquipmentCrafting;
+use EquipmentCrafting;
+
+create table Usuario(
+	idUsuario int Not null auto_increment,
+    nivel int,
+    experiencia int,
+    nome varchar(45),
+	primary key(idUsuario)
+);
+
+create table TemplateType(
+	idTemplateType int not null auto_increment,
+    nome varchar(45),
+    primary key(idTemplateType)
+);
+
+create table Material(
+	idMaterial int not null auto_increment,
+    nome varchar(45),
+    durabilidade float,
+    peso float,
+    valorMagico float,
+    primary key(idMaterial)
+);
+
+create table Template(
+	idTemplate int not null auto_increment,
+    idTemplateType int not null,
+    idUsuario int not null,
+    automatizavel boolean,
+    nome varchar(45),
+    primary key(idTemplate),
+    foreign key(idTemplateType) references TemplateType(idTemplateType) on delete cascade on update cascade,
+    foreign key(idUsuario) references Usuario(idUsuario) on delete cascade on update cascade
+);
+
+create table TemplateUsedMaterial(
+	idMaterial int not null,
+    idTemplate int not null,
+    primary key(idMaterial, idTemplate),
+    foreign key(idMaterial) references material(idMaterial) on delete cascade on update cascade,
+    foreign key(idTemplate) references Template(idTemplate) on delete cascade on update cascade
+);
+
+create table Inventory(
+	idUsuarioInv int not null,
+    quantidadeMax int,
+    primary key(idUsuarioInv),
+    foreign key(idUsuarioInv) references Usuario(idUsuario) on delete cascade on update cascade
+);
+
+create table Equipment(
+	idEquipment int not null auto_increment,
+    idUsuario int default null,
+    nome varchar(45),
+    qualidade float,
+    metodoUtilizado boolean,
+    peso float,
+    primary key(idEquipment),
+    foreign key (idUsuario) references Inventory(idUsuarioInv) on delete set null on update cascade
+);
+
+create table Attribute(
+	idAttribute int not null auto_increment,
+    idEquipment int not null,
+    nome varchar(45),
+    valor float,
+    primary key(idAttribute),
+    foreign key (idEquipment) references Equipment(idEquipment) on delete cascade on update cascade
+);
+
+create table EquipmentUsedMaterial(
+	idMaterial int not null,
+    idEquipment int not null,
+    primary key(idMaterial, idEquipment),
+    foreign key(idMaterial) references material(idMaterial) on delete cascade on update cascade,
+    foreign key(idEquipment) references Equipment(idEquipment) on delete cascade on update cascade
+);
+
+create table MiniGameType(
+	idGameType int not null auto_increment,
+    nome varchar(45),
+    descricao varchar(100),
+    primary key(idGameType)
+);
+
+create table MiniGameScore(
+	idScore int not null auto_increment,
+    pontuacao double default null,
+    idEquipment int default null,
+    idGameType int not null,
+    idUsuario int not null,
+    primary key(idScore),
+    foreign key(idEquipment) references Equipment(idEquipment) on delete set null on update cascade,
+    foreign key(idGameType) references MiniGameType(idGameType) on delete cascade on update cascade,
+    foreign key(idUsuario) references Usuario(idUsuario) on delete cascade on update cascade
+);
+
+create table JavaInstructions(
+	idJavaInstructions int not null auto_increment,
+    idUsuario int not null,
+    idTemplate int default null,
+    tipo varchar(45),
+    instruction varchar(45),
+    processado boolean,
+    primary key(idJavaInstructions),
+    foreign key(idUsuario) references Usuario(idUsuario) on delete cascade on update cascade,
+    foreign key(idTemplate) references Template(idTemplate) on delete cascade on update cascade
+);
+
+
+INSERT INTO Usuario (nivel,experiencia,nome) VALUES 
+(1,0,'Tester');
+
+INSERT INTO TemplateType (nome) VALUES 
+('Espada');
+
+INSERT INTO Material (nome, durabilidade, peso, valorMagico) VALUES 
+('Ferro', 100.0, 5.0, 1.0),
+('Madeira', 50.0, 2.0, 10.0),
+('Mythril', 75.0, 3.0, 50.0);
+
+INSERT INTO Template (idTemplateType, idUsuario, automatizavel, nome) VALUES 
+(1, 1, true, 'Espada de Teste');
+
+INSERT INTO TemplateUsedMaterial (idMaterial, idTemplate) VALUES 
+(1, 1), -- Ferro no Template 1
+(2, 1); -- Madeira no Template 1
+
