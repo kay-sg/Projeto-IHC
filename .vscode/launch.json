@@ -3,6 +3,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CraftingController",
+            "request": "launch",
+            "mainClass": "controller.CraftingController",
+            "projectName": "Projeto-IHC_59ee1678"
+        },
+        {
+            "type": "java",
             "name": "Java Debug",
             "request": "launch",
             "mainClass": "CraftingController",

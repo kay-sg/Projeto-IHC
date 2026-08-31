@@ -1,3 +1,5 @@
+package model;
+
 public class Minijogo {
 
     private int idMinijogo;

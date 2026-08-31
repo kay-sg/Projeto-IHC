@@ -1,6 +1,6 @@
 {
     "java.project.sourcePaths": [
-        "model", "controller"
+        "."
     ],
     "java.project.referencedLibraries": [
         "java-lib/**/*.jar"
